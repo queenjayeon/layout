@@ -1,0 +1,100 @@
+@charset "utf-8";
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none; /* underline > 하면 밑줄 생김 가능 */
+    color: inherit;
+}
+
+body {
+    color: #333;
+}
+
+.item {
+    width: 450px;
+    height: 600px;
+    margin: 10px auto; /* 위더스가 있는 선택자를 가운데로 옮겨주는 역할 */
+    position: relative; /* div의 중심 */
+}
+
+.item figure {
+    width: 100%;
+    height: 100%;
+}
+
+.item figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item div { /* 아이템 위에 올라가는거니까 아이템에 렐러티브 (중심)잡기 ★ */
+    position: absolute; /* 포지션앱솔,상하좌우방향 설정은 세트 */
+    left: 0;
+    top: 50%;
+    transform: translate(0,-50%); /* 좌우변경x, 상하 이동 o */
+    /* 위에 4개 태그가 공식처럼 사용됨 (수직 가운데 잡는 공식)
+    변형 : 이동(x축, y축) > 본인이 가진 값으로 이동*/
+    text-align: center;
+
+    opacity: 0; /* <<숨김처리 */
+}
+
+.item::before { /* 아이템의 자식 */
+    content: ''; /* 정보들어갈거 아니어서 비워두기 */
+    width: 100%;
+    height: 100%;
+    background-color: #c26c6ca9;
+    display: block;
+    
+    position: absolute; /* 자식을 부모 위에 얹힐 때 무조건 사용 */
+    left: 0;
+    top: 0;
+    /* 항상 이렇게 세트로 쓰이는 편 */
+
+    opacity: 0; /* <<숨김처리 (배경컬러가잡혀있으니까 없애기) */
+}
+
+.item div a { /* 사이즈설정안되면 인라인요소 > 디스플레이블럭필요 */
+    width: 120px;
+    height: 40px;
+    background-color: #ad88889d;
+    color: aliceblue;
+
+    display: block; /* ★★★★★★★★★★★★★★★★★★★★★ */
+    margin: 0 auto; /* width 값이 있어서 마진0오토 */
+    line-height: 40px; /* 박스가운데 수직가운데배치 = 높이값과 동일한 수치 */
+}
+
+.item:hover div { /* 아이템에 마우스를 올렸을때 자식인 div 를 어떻게 해줄래? */
+    opacity: 1;
+    transition: 1s; /* 트랜지션 잡아주면 부드럽게 표현됨 */
+}
+
+.item:hover::before { /* ※띄우지말고 붙여쓰기※ */
+    opacity: 1;
+    transition: 1s;  /* 트랜지션 잡아주면 부드럽게 표현됨 */
+} 
+
+.item div h4 {
+    display: inline-block;
+    padding: 0 30px;
+    position: relative;
+}
+
+.item div h4::before {
+    content: '';
+    width: 100%;
+    height: 10px;
+    background-color: rgb(209, 120, 209);
+    transform: translate(0,100%);
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+
+}

@@ -1,0 +1,190 @@
+@charset "utf-8" ; /* 인코딩 연결, 한글 깨지는 오류 방지 */
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* { margin: 0;
+    padding: 0;
+    font-family: 'GmarketSansMedium';}
+
+li { /* 메뉴 앞에 동그라미 없애기 */
+    list-style: none;} 
+    
+a { /* 메뉴 밑에 밑줄 없애기 */
+    text-decoration: none;
+    color: inherit; /* 색은 부모값 물려받기 */
+}
+
+body {
+    color: dimgrey;
+}
+
+/* ※※※※※※header 헤더 부분 수정※※※※※※※※ */
+header {
+    width: 1280px;
+    height: 100px;
+    margin: 0 auto; /* 내가 정한 가로값을 가운데 배치를 위한 작업 */
+    /* background-color: antiquewhite; 영역확인하기 위해 표시, 나중에 지울 것 */
+
+    display: flex; /* 다른 태그로 작성된 태그 가로 나열 할 때 플렉스 사용 */
+    justify-content: flex-end; /* space-between > 로고는 왼쪽에 메뉴는 오른쪽에 배치
+    앱솔루트 사용해서 h1 공간이 사라졌을때 nav의 위치를 ★flex-end★로 좌측 정렬 가능! */
+    /* justify-content는 display flex와 함께 사용!*/
+    position: relative;
+}
+
+header nav ul li {
+    display: inline-block; /* 네비들 가로 나열, 여백이 있음, 컨텐츠 중심에 집착 안 할 때 사용 가능 */
+    line-height: 100px; /* 헤더 높이값 100으로 잡아놔서 100으로 설정해주면 중심 잡기 가능! 위에 헤더 참고 */
+    margin-left: 30px;
+}
+
+header h1 { /* 로고의 공식처럼 사용되는 태그 */
+    position: absolute; /* 앱솔루트 쓰려면 헤더태그에 렐러티브가 있어야함 - 공식임 (외우삼) */
+    /* 앱솔루트를 쓰면 원래 있던 공간을 공백으로 인식하기때문에 다른 태그들이 위치 이동을 하게 됨,
+    다시 잡아줘야함! */
+    top: 50%; /* 헤더의 높이에서 반 내려옴 */
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 0; /* 이미지는 line-height 100%가 안 먹힘 */
+
+    /* 위에 있는 모든 태그들이 이미지를 가운데 배치하게 하기 위한 과정!!
+    position , top, left, transform, font-size 함께 거의 공식! */
+}
+
+/* ★★★★★★★★ main_visual 스타일 잡을거임★★★★★★★★★★★★ */
+
+.main_visual { /* 가로 꽉차게 하고싶으면 width 값 안 잡으면 됨 */
+   /* width: 1280px;  */ 
+    height: 540px; /* 구템즈 배너 세로값도 이거 */
+   /*  margin: 0 auto;*/ 
+}
+.main_visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* cont01 편집시작★★★★★★ */
+.cont01 { 
+    width: 1280px;
+    margin: 100px auto; /* 화면 가운데로 옮겨짐 */
+}
+.cont01 h3 {
+    font-size: 30px;
+    margin-bottom: 40px;
+}
+
+.cont01 .list {
+    display: flex;
+    justify-content: space-between; /* 가운데 배치 및 가로 나열 */
+}
+
+.cont01 .list div { /* 크기조절은 큰덩어리부터 순차적으로 하는게 좋음 */
+    width: 300px;
+}
+
+.cont01 .list div figure {
+    width: 100%; /* 부모의 크기만큼 */
+    height: 300px; /* 정사각형이 돼야 예쁜 원형이 됨 */
+}
+
+.cont01 .list div figure img { /* div > figure > img 순차적 수정 */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+   /*   box-shadow: 10px 10px 10px #333;  << 그림자 설정도 가능~!*/
+}
+
+.cont01 .list div p {
+    margin-top: 20px; /* 이미지와 사이 간격 띄우기 */
+    text-align: center; /* 글자 가운데 정렬 */
+    font-size: 16px; /* 보통 사이트 폰트 기준 16px */
+    word-break: keep-all; /* 텍스트 단어로 줄바꿈 */
+}
+
+.cont02 { /* 그라디언트io 그라데이션 색상 이용가능 사이트 */
+    background: rgb(160,169,209);
+    background: radial-gradient(circle, rgba(160,169,209,1) 0%, rgba(108,102,93,1) 100%);
+    padding: 100px 0; /* 패딩 좌우값 오토잡으면 오류남 0으로 잡아주기 */
+    }
+
+.cont02 .inner { /* h3와 시작라인 동일하게 하는 방법 */
+    width: 1280px;
+    margin: 0 auto;
+}
+
+.cont02 .inner h3 {
+    font-size: 30px;
+    margin-bottom: 40px;
+    text-align: center;
+    color: aliceblue;
+}
+
+.cont02 .inner .list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cont02 .inner .list .item { /* item은 이미지와 글 포함한 값 */
+    width: 300px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.452) ;
+    border-radius: 50px 0px 30px 0;
+    
+    position: relative; /* span/strong태그의 부모격이기때문에 item에 position relative 설정 */
+}
+
+
+.cont02 .inner .list .item figure { /* 이미지가 덮일 영역 */
+    width: 100%;
+    height: 210px;
+}
+
+.cont02 .inner .list .item figure img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50px 0px;
+}
+
+.cont02 .inner .list .item div {
+    padding: 30px; /* 내부여백 상하좌우 30px 씩 떨어지게 */
+    word-break: keep-all; /* 텍스트 단어 띄어쓰기 */
+}
+
+.cont02 .inner .list .item div span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: black;
+    color: aliceblue;
+    padding: 7px; /* 여백조절! */
+}
+
+.cont02 .inner .list .item div h4 {
+    margin-bottom: 15px;
+    background-color: antiquewhite;
+}
+
+.cont02 .inner .list .item div strong { /* 스트롱태그는 인라인요소여서 마진값 적용x */
+    margin-top: 50px;
+    width: 100px;
+    display: block; /* 인라인요소를 블럭적용해주고 변화시키기 */
+    background-color: black;
+    color: azure;
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+}
+
+footer { 
+    padding: 70px 0;
+    text-align: center;
+    font-size:14pxs;
+}

@@ -1,0 +1,105 @@
+@charset "utf-8" ;
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'NanumSquareNeo-Variable';
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    color: #333; /* 짙은 회색 많이 쓰임 */
+    height: 700px; /* 임의로 설정, 헤더 고정확인용 */
+}
+
+header {
+    background: rgb(160,169,209);
+    background: radial-gradient(circle, rgba(160, 169, 209, 0.507) 0%, rgba(108,102,93,1) 100%);
+    color: antiquewhite;
+    height: 100px;
+    position: fixed; /* 이미지 위에 헤더 올릴 때,헤더 고정, width 값 잡아주기! */
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+header .inner {
+    line-height: 100px; /* 줄간격, 텍스트가 한줄일때 높이와 같은 값을 적용하면 가운데로 배치됨 */
+    width: 1280px;
+    margin: 0 auto; /* 가로값, 가운데 배치 */
+    display: flex; 
+    justify-content: space-between; /* 항상 세트로 쓰임 */
+}
+
+header .inner ul li {
+    display: inline-block; /* 헤더 안 ul안 li들 가로 나열 */
+    line-height: 100px; /* li 들 가운데 배치 */
+}
+
+header .inner nav ul li {
+    margin: 0 20px;
+}
+
+header .inner .user li {
+    margin-left: 10px;
+}
+
+/* main_visual */
+.main_visual {
+    height: 70vh; /* 브라우저 높이 전체 영역 */
+}
+
+.main_visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.list {
+    width: 1280px;
+    margin: 100px auto;
+    display: flex; /* 가로 정렬 후 */
+    justify-content: space-between; /* 사이 간격 띄우기 */
+    /* display:flex - justify~~ 한쌍임 */
+}
+
+.list > div { /* ">" 직계자식만 선택가능 list바로 아래있는 div들 (item01,02,03을 뜻함) */
+    width: 400px;
+    border: 2px solid #000;
+}
+
+.list > div figure {
+    height: 600px;
+}
+
+.list > div figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.list .item01 { /* 이미지 위로 글 올려줄거임 */
+    position: relative;
+    height: 600px;
+}
+
+.list .item01 div {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}

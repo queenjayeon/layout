@@ -1,0 +1,190 @@
+@charset "utf-8" ;
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+li {list-style: none;}
+a {text-decoration: none; color: inherit;}
+
+body {
+    color: #333; 
+    font-family: 'GmarketSansMedium'; /* ← 폰트적용 */
+    /* 뒷배경 이미지로 설정하는 방법↓ */
+    background: url(../img/0313-4.jpg) center center / cover no-repeat; 
+    /* 배경이미지경로 x축위치 y축위치  / 사이즈 이미지반복 */
+}
+
+.wrap {
+    width: 1600px;
+    background-color: rgba(250, 235, 215, 0.664);
+    margin: 100px auto; /* 상하100px 좌우 가운데 정렬 */
+}    
+
+header {
+    height: 100px;
+    line-height: 100px; /* 텍스트 높이 수직 가운데 태그 */
+    width: 1440px;
+    margin: 0 auto; /* width 1440 안에서 가운데 배치 */
+    
+    display: flex; /* nav_가운데 정렬 */
+    justify-content: space-between; /* 메뉴 양끝 정렬 */
+    /* ↑세트메뉴↑ */
+}
+
+header nav ul li {
+    display: inline-block; /* 가로 나열 */
+    margin: 0 20px; /* 상하조절x, 좌우 20픽셀씩 */
+}
+
+header .right_menu li {
+    display: inline-block; /* 가로 나열 */
+    margin-left: 10px;
+}
+
+/* .main_visual start */
+
+.main_visual {
+    width: 1440px;
+    height: 700px;
+    margin: 0 auto; /* 가로영역 가운데 배치 */
+
+    position: relative;
+}
+
+.main_visual img {
+    width: 100%;
+    height: 100%; /* 알아서 조절이 되나, 안 되는 경우도 있기 때문에 잡아주기 */
+    object-fit: cover; /* 이미지 사이즈 맞추기, 부모값 물려받아서 */
+
+    /* opacity: 60%; */ /* 이미지 블러처리! */
+}
+
+.main_visual div {
+    width: 100%;
+    position: absolute; /* 부모값에 relative 잡아주기 */
+    top: 50%;
+    left: 0;
+    transform: translate(0,-50%); /* 이미지 위 텍스트 수직가운데 배치 = 거의 공식값 */
+    text-align: center; /* width 값에서 가로 정렬해주는 값 */
+
+    color: rgb(255, 255, 255);
+}
+
+.main_visual div h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.main_visual div p {
+    font-size: 20px;
+}
+
+.main_visual div::before { /* 제목 위에 선 */
+    content: ''; /* 무조건 있어야 함 */
+    width: 1px;
+    height: 70px;
+    background-color:rgb(255, 255, 255);
+    display: block;
+    /* margin: 0 auto;  사용시 div 전체영역이 밑으로 내려옴*/
+    position: absolute;
+    left: 50%;
+    top: -120px; /* position, left, top으로 옮길 수 있음 */
+
+}
+
+.main_visual div::after { /* 제목 밑에 선 */
+    content: '';
+    width: 3px;
+    height: 120px;
+    background-color:rgb(255, 255, 255);
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 120px;
+    /* bottom: -120px; top말고 bottom을 써도 됨 */
+}
+
+.main_visual::before { /* img에는 가상선택자가 안 먹힘! 메인비주얼에 먹여주기 */
+    content: ''; 
+    background-color: #33333393;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* .cont01 start */
+.cont01 {
+    width: 1440px;
+    margin: 100px auto;
+}
+
+.cont01 h3 {
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cont01 .list { /* 큰 틀 안에 있는 item들을 가로 나열 ★부모★*/
+    display: flex;
+    justify-content: space-between;
+}
+
+.cont01 .list .item { /* ★자식들★ */
+    width: 460px;
+    height: 560px;
+
+    position: relative; /* div들의 부모격 */
+}
+
+.cont01 .list .item figure { /* ★자식들★ */
+    width: 100%;
+    height: 100%; /* 필수★ */
+
+}
+
+.cont01 .list .item figure img { /* ★자식들★ */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지 크기 알맞게 맞춰짐 */   
+}
+
+.cont01 .list .item div {
+    position: absolute; /* item에게 relative 잡아주기 */
+    top: 0;
+    left: 0; /* 방향설정 필수 */
+
+    width: 100%;
+    height: 100%;
+    padding: 50px;
+    box-sizing: border-box;
+
+    background-color: rgba(37, 36, 35, 0.397);
+    color: antiquewhite;
+    border-style: dotted; /* 우표느낌 */
+
+    
+    /* width: 150px;
+    height: 50px;
+    text-align: center;
+    border-radius: 0 120px 50px 100px; */
+}
+
+.cont01 .list .item div:hover {
+    border: 10px solid antiquewhite;
+}
+
+footer {
+    line-height: 70px;
+    text-align: center;
+    border-top: 1px solid #333; /* 테두리는  border / 위쪽 테두리하고싶으면 border-top 이렇게! / 굵기 선스타일 색상 */
+}

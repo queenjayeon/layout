@@ -1,0 +1,195 @@
+@charset "utf-8" ; /* 인코딩 연결 시켜주는 과정 */
+*{margin: 0;
+padding: 0;}
+
+
+li {list-style: none;}
+a { text-decoration: none;
+color: inherit;}
+
+boay { color: 333;}
+
+/* 메뉴보기, 햄버거 아이콘 스타일 없애는 법 */
+.xi-bars {display: none;}
+.xi-bars span {
+    position: absolute;
+    left: -99999999999999px; /* 메뉴보기 글자가 사라짐 */
+}
+
+/* header */
+
+header {
+    
+    width: calc(100% - 60px); /* 좌우 30픽셀 띄우겠다는 거임 */
+    height: 100px;
+    background-color: #fff;
+  ;
+
+    position: absolute; /* margin : 0 auto (가운데배치) 적용 안 됨 */
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%); /* < 헤더 가운데 배치 시키는 방법 */
+
+    z-index: 1; /* 존재했다가 사라지면 뒤로 가진 거, z-index를 해서 앞으로 내보내면 됨! */
+
+
+}
+
+header .inner {
+    
+    height: 100%;
+    display: flex ; /* 플렉스가 잡혀 있으면 높이를 잡아줘야 함!!! */
+    justify-content: space-between;
+    align-items: center; /* 수직 가운데 정렬 */
+}
+
+header .inner nav ul li {
+    display: inline-block; /* 가로 나열 */
+    margin: 0 20px;
+    
+}
+
+
+/* main_visual */
+.main_visual {
+    height: 100vh; /* vh = 브라우저 높이 전체 영역 */
+    
+    position: relative; /* 이거 잡으면 헤더가 사라지게 됨! 헤더가 뒤로 가진거, 그때 헤더에 zindex해서 앞으로 끌올! */
+}
+
+.main_visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.main_visual div {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    width: 100%;
+    text-align: center;
+
+
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center; */ /* 이렇게 하면 반응형에 적절치 않음, 자유여백이 쓸데없이 많이 생김 */
+
+
+    color: #fff;
+}
+
+.main_visual div h2 {font-size: 50px;}
+.main_visual div p {font-size: 25px;}
+
+/* cont01 */
+
+.cont01 {
+    max-width: 1280px; /* 1280px까지만 커지는 거!, 컨텐츠 넓이값 */
+    width: 95%;
+    margin: 30px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* 자식이 갖고 있는 높이값 안에서 가운데 정렬하기 때문에 높이값 없어도 됨 */
+} /* 글 가로 나열 방법 1 align-items */
+
+.cont01 figure {
+    width: 32%;
+    height: 450px;
+}
+
+.cont01 figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cont01 div {
+    width: 32%;
+    
+   /*  display: flex; /* 글이 가로 나열됨 */
+   /*  flex-direction: column; /* 글 강제로 밑으로 떨어지게 함 */ 
+   /*  justify-content: center; */  /* << 글 가로 나열 방법 2  */
+}
+
+.cont01 div a { /* a태그는 인라인요소 > 블럭요소로 바꿔주기 */
+    width: 120px;
+    height: 40px;
+    border: 2px solid black;
+    border-radius: 50px;
+
+    display: block;
+    line-height: 40px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* ~1024px 이하일 때 스타일 적용 */
+
+@media all and (max-width:1024px) { /* all < 모든 영역에서 스크린,모바일 등등 and 앞뒤로 띄우기! */
+ /* 1차 > nav 없애기, 메뉴아이콘 나타나기  */
+  header nav {
+    display: none;
+  }
+
+  .xi-bars {
+    display: block;
+    font-size: 30px; /* 폰트라서 사이즈 키울 수 있음! */
+  }
+
+  .cont01 {flex-wrap: wrap; /* cont01에 flex 가 잡혀 있어야 함!!! */}
+  .cont01 figure { /* 검사창 활용! */
+    width: 49%;
+  }
+
+  .cont01 div {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .cont01 div a { /* 이거 가운데 정렬 해보기!!  */
+    display: block;
+    justify-content: center; /* 이렇게만 하면 안 됨 */
+    width: 50px;
+    margin: 15px auto;  /* width값 잡아주고 마진 auto 해주면 됨 */
+  }
+
+
+
+
+
+
+} /* 1024 이하, 이 안에서 작성! (반응형) */
+
+/* 0405 수업~ */
+
+/* 767px 이하일 때 스타일 변경 (태블릿 사이즈)*/
+@media all and (max-width:767px) {
+  header {
+    height: 70px;
+    transition: 0.5s;
+  }
+
+  .main_visual div h2 {
+    font-size: 40px;
+    transition: 0.5s;
+  }
+
+  .main_visual div p {
+    font-size: 16px;
+    transition: 0.5s;
+  }
+}
+
+/* 414px 이하일 때 (모바일ver) */
+
+@media all and (max-width:414px) {
+  .cont01 figure {
+    width: 100%;
+    height: 250px;
+    margin: 10px 0;
+    transition: 0.5s;
+  }
+}
