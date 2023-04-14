@@ -1,0 +1,496 @@
+@charset "utf-8" ;
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * { 
+ font-family: 'Noto Sans KR', sans-serif;
+}
+
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a { 
+    text-decoration: none;
+    color: inherit;
+}
+
+body { color: #333;
+    overflow-x: hidden; /* overflow : hidden 하면 다 없어짐 주의!!! */
+}
+
+/* ↑↑↑↑ 기본으로 잡아줄 것들↑↑↑↑↑*/
+
+.mobile { display: none; } /* 모바일 영역에서만 보이게 할 거임 */
+
+/* header 정리 */
+header .inner {
+    max-width: 1600px; 
+    width: 95%; /* 1600px보다 작은 화면일 때 width값 95% */
+    margin: 0 auto;
+}
+
+header .inner .hd_top {
+    display: flex; /* 가로 나열 */
+    justify-content: flex-end; /* 제일 오른쪽 */
+    height: 50px; /* 높이값 */
+    align-items: center; /* 세로높이영역에서 가운데 */
+    font-size: 14px;
+}
+
+header .inner .hd_top li {
+    margin-left: 20px; /* 오른쪽으로 붙은 메뉴들 왼쪽으로 20px 만큼 띄우기 */
+    position: relative;
+}
+
+header .inner .hd_top li::before { /* 가상선택자 잡아서 줄 긋는 게 예쁨 */
+    content: ""; /* 무조건 있어야하고, 안에 들어갈 정보가 없다면 비워둠 */
+    width: 2px;
+    height: 10px;
+    background-color: #333;
+    /* li에 붙을 수 있도록 li에 position:relative잡아줌 */
+    position: absolute; /* position 쓸때는 display:block 안 써도 됨 */
+    top: 50%;
+    left: -10px;
+    transform: translateY(-50%);
+} /* hd_top에 줄 긋는 과정! */
+
+header .inner .hd_top li:first-child::before {
+    display: none;
+} /* 로그인 앞에 | 를 없애기 위한 과정 */
+
+/* 로그인 상단 영역 정비 완료 */
+
+header .inner .hd_bottom {
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* 잡아높은 높이 70px 중 가운데 배치! */
+
+
+} /* 이렇게까지 하면 로고 실종됨 */
+
+header .inner .hd_bottom h1 {
+    width: 180px;
+}
+
+header .inner .hd_bottom h1 a img {
+    height: 40px; /* 이미지 높이 */
+}
+
+header .inner .hd_bottom .pc {
+    height: 100%; /* 2차 메뉴를 잡기 위한 height값 설정  */
+   /*  width: calc(100% - 200px); */
+}
+
+header .inner .hd_bottom .pc .gnb {
+    height: 100%; /* 2차 메뉴를 잡기 위한 height값 설정  */
+}
+
+header .inner .hd_bottom .pc .gnb .depth01 {
+    height: 100%;  /* 2차 메뉴를 잡기 위한 height값 설정  */
+    line-height: 70px; /* 아래쪽 자식에게 상속됨 */
+
+    display: inline-block;
+    position: relative;
+    padding: 0 30px; /* 1차 메뉴 부분에 자리가 넉넉히 있어야 함! */
+}
+
+header .inner .hd_bottom .pc .gnb .depth01 .depth02 {
+    position: absolute; /* depth01 이 기준, depth01에 가로영역을 잡아주어야 함 */
+    left: 50%;
+    transform: translateX(-50%); /* 1차 메뉴 밑의 가운데 위치하도록 */
+
+    top: 70px; /* 2차 메뉴 내려주기 */
+    width: 150px; /* 2차 메뉴가 길면 강제로 width px 잡아줌 */
+    /* width: 100%; << 2차 메뉴가 짧을 땐 100% 해도 됨 */ 
+    background-color: rgb(255, 255, 255); /* 구분 위해 잠시 깔아주기 */
+    text-align: center;
+
+ 
+
+    display: none; /* 안 보이도록 잡아주기! */
+}
+
+header .inner .hd_bottom .pc .gnb .depth01:hover .depth02 {
+    display: block; /* 마우스 올렸을 때 나타나도록  */
+    z-index: 1; /* 호버했을 때 안 보이면 z-index 잡아주기! */
+}
+
+header .inner .hd_bottom .pc .gnb .depth01 .depth02 li {
+    padding: 10px;
+    line-height: 1.5; /* depth01에게 상속받은 line height값 재조정 */
+} /* 2차 메뉴간 간격 잡아주기 */
+
+header .inner .hd_bottom .pc .gnb .depth01 .depth02 li:nth-child(1):hover {
+    background-color: #333;
+    color: azure;
+}
+
+header .inner .hd_bottom .pc .gnb .depth01 .depth02 li:nth-child(2):hover {
+    background-color: #333;
+    color: azure;
+}
+
+header .inner .hd_bottom .pc .gnb .depth01 .depth02 li:nth-child(3):hover {
+    background-color: #333;
+    color: azure;
+}
+header .inner .hd_bottom .pc .gnb .depth01 .depth02 li:nth-child(4):hover {
+    background-color: #333;
+    color: azure;
+}
+header .inner .hd_bottom .pc .gnb .depth01 .depth02 li:nth-child(5):hover {
+    background-color: #333;
+    color: azure;
+}
+header .inner .hd_bottom .pc .gnb .depth01 .depth02 li:nth-child(6):hover {
+    background-color: #333;
+    color: azure;
+}
+header .inner .hd_bottom .pc .gnb .depth01 .depth02 li:nth-child(7):hover {
+    background-color: #333;
+    color: azure;
+}
+header .inner .hd_bottom .pc .gnb .depth01 .depth02 li:nth-child(8):hover {
+    background-color: #333;
+    color: azure;
+}
+
+/* main_visual 정리 */
+.main_visual {
+    height: 100vh;
+    position: relative;
+}
+
+.main_visual div { /* 글자 이미지 위로 */
+    max-width: 1600px;
+    width: 95%;
+    position: absolute; /* .main_visual에 relative 잡기 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.main_visual div h2 {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.main_visual div p {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+.main_visual div span {
+    font-size: 17px;
+}
+
+.main_visual div a {
+    width: 150px;
+    height: 35px;
+    border: 2px solid black;
+    border-radius: 40px;
+    text-align: center;
+    line-height: 35px;
+    margin-top: 100px;
+    background-color: black;
+    color: white;
+
+    display: block;
+}
+
+.main_visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 0412 이어서 ㄱㄱ */
+/* .best start */
+
+.best {
+    max-width: 1600px;
+    width: 95%;
+    margin: 100px auto; /* 좌우 auto 하면 영역의 끝으로 온다! */
+    position: relative;
+}
+
+.best > a { /* > 직계자식인 a 태그에게만 적용시키겠다! */
+    display: block; /* 인라인요소라 블럭으로 바꿔주기! */
+    width: 120px;
+    height: 35px;    
+    border: 2px solid #333;
+    border-radius: 40px;
+    text-align: center;
+    line-height: 35px;
+    position: absolute; /* 부모인 .best에게 relative잡기! */
+    top: 0;
+    right: 0; /* 오른쪽에 붙일거니까! */
+
+    /* background-color: black;
+    color: whitesmoke; */
+} /* position:absolute 를 잡으면 영역이 사라짐! */
+
+.best h3 {
+    font-size: 50px;
+    margin: 0 0 40px; /* 위 좌우 아래 << 부모에게 마진100이 잡혀있어서 위쪽 마진이 안 잡힘 */
+    padding-top: 50px; /* 패딩으로 내부여백 잡아주기! */
+}
+
+.best .best_menu {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap; /* 화면크기가 작아지면 텍스트가 아래로 떨어지는 기능! */
+    margin-bottom: 30px;
+}
+
+.best .best_menu li {
+    margin-left: 30px;
+}
+
+.best .best_menu li:nth-child(1) {
+    color: red ;
+}
+
+.best .list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* 화면이 작아지면서 공간이 부족하면 자식들을 밑으로 떨구는 역할, 걍 미리잡아버리기~ */
+}
+
+.best .list .item {
+    width: calc(100% / 4 - 10px); /* 100%에서 4등분해주고 사이간격 10px */
+}
+
+.best .list .item figure {
+    width: 100%;
+    height: 420px;
+}
+
+.best .list .item figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.best .list .item .text h4 {
+    font-size: 20px;
+    margin: 20px 0 30px; /* 위 좌우 아래 */
+}
+
+.best .list .item .text .price {
+    font-size: 22px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.best .list .item .text .price p {
+    color: #838383;
+    text-decoration: line-through; /* 취소선 */
+}
+
+/* .best .list .item .text .price div strong {
+    font-size: 25px;
+    
+} */
+
+.best .list .item .text .price div span {
+    margin: 0 20px;
+    color: rgb(184, 43, 43);
+    font-weight: bold; /* 두께 두껍게 */
+}
+
+/* header, .main_visual , .best에 대한 미디어 쿼리 */
+/* 1024px 이하 일 때__ 반응형 작성 */
+
+@media all and (max-width:1024px) {
+    header .pc { display: none;} /* pc버전 안 보이게 설정! */
+    header i.mobile { 
+        display: block;
+        font-size: 40px;
+        color: rgb(190, 40, 40);
+    }
+    header i.mobile span { /* 프로그램 상 '메뉴보기'라고 읽어주지만 사이트에선 안 보이게 날려버리기~! */
+        position: absolute;
+        left: -999999px;
+    }    
+    .best {
+        margin: 100px auto;
+    }
+    
+    .best .list .item figure {
+        height: 250px;
+    }
+
+    .best .list .item .text h4 {
+        height: 50px;
+    }
+
+
+
+} /* 1024px 이하 */
+
+/* 767px 이하 일때 */
+@media all and (max-width:767px) {
+    header .inner .hd_top {
+        height: 30px;
+        font-size: 13px;
+    }
+
+    header .inner .hd_bottom {
+        height: 50px;
+    }
+
+    header .inner .hd_bottom h1 a img {
+        height: 25px;
+    }
+
+    .main_visual {
+        text-align: center;
+    }
+
+    .main_visual div h2 {
+        font-size: 35px;
+    }
+
+    .main_visual div p {
+        font-size: 22px;
+    }
+
+    .main_visual div span {
+        font-size: 18px;
+        margin-bottom: 0;
+    }
+
+    .main_visual div a {
+        width: 100px;
+        height: 28px;
+        line-height: 28px;
+        
+        display: flex;
+        justify-content: center;
+        margin: 50px auto; /* a태그 가운데로 옮기는 방법 */
+    }
+    .main_visual div {
+        top: 40%;
+        background-color: rgba(240, 248, 255, 0.39);
+        backdrop-filter: 20px;
+    }
+
+    .best {
+        margin: 60px auto;
+    }
+
+    .best > a {
+        width: 100px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 14px; /* 최소 13px까지만 줄이기 */
+    }
+
+    .best h3 {
+        font-size: 40px;
+        margin: 20px auto;
+    }
+
+    .best .best_menu {
+       /*  display: flex; < 이거 안 적어줘도 됨 */
+        justify-content: flex-start; /* 왼쪽(시작)지점으로 배치! */
+    }
+
+    .best .best_menu li {
+        margin-left: 0; /* 왼쪽으로 붙게끔 0으로 잡아주고 */
+        margin-right: 20px; /* 오른쪽으로 다시 떨어뜨리기~! */
+    }
+
+    .best .list .item {
+        width: calc(100% / 2 - 5px);
+        margin-bottom: 20px;
+    }
+
+    .best .list .item .text h4 {
+        font-size: 18px;
+        margin: 10px 0 15px;
+        height: 28px;
+    }
+
+   /*  .best .list .item:nth-child(2) + .item {
+        display: none;
+    } */ /* +는 바로 뒤에 오는 형제 선택자만 적용! */
+
+    .best .list .item:nth-child(2) ~ .item {
+        display: none;
+    } /* ~ = 뒤에 오는 모든 아이템에게 적용시켜줌! */
+
+    .best .list .item figure {
+        height: 50vw; /* vh : 브라우저 높이, vw: 브라우저 너비 */
+    } /* 화면이 커지거나 작아졌을때 그에 따라 높이도 같이 적용됨! vw 적용시 */
+
+/* px 은 고정값, % 는 부모의 값에 따라 반응 (참고)*/
+
+
+} /* 767px under */
+
+/* 414px under */
+@media all and (max-width:414px) {
+
+    .main_visual {
+        height: 50vh;
+    }
+
+    .main_visual div h2 {
+        font-size: 30px;
+    }
+
+    .best h3 {
+        font-size: 30px;
+    }
+    .best .best_menu li {
+        font-size: 14px;
+    }
+
+    .best .list .item .text h4 {
+        font-size: 16px;
+       /*  height: auto; */ /* height 값 잡아놓은 거 해제 */
+        margin: 10px 0 50px;
+    }
+    .best .list .item .text .price {
+        font-size: 16px;
+    }
+ 
+
+} /* 원래 320까지 맞췄지만 갤럭시폴드의 영향으로 260까지 잡아줌 */
+
+/* 텍스트 애니메이션 .slide_text */
+
+.slide_text {
+    background-color: rgb(189, 40, 40);
+    color: whitesmoke;
+    padding: 20px 0;
+}
+
+.slide_text ul {
+    white-space: nowrap; /* 글자 무조건 한줄 나열 시켜주는 성질을 갖고 있음 (텍스트 한줄) */
+    animation: slidetext 60s infinite linear; /* infinite : 무한반복 */
+} /* 애니메이션 : 이름, 시간, 횟수, 속도 */ /* linear : 일정한 속도로, 속도 안 잡아주면 점점 빨라짐 */
+
+@keyframes slidetext { /* 애니메이션 실행코드 keyframes (정한 이름) */
+    0% {
+        transform: translateX(0); /* 가로 위치값 */
+    } /* 시작시점 */
+    
+    100% {
+        transform: translateX(-100%); /* 100% 왼>오 / -100% 오 >왼 */
+    } /* 종료시점 */
+}
+
+.slide_text ul li { /* flex 잡으면 글자 이상하게 나열됨 */
+    display: inline-block; /* 그래서 인라인블럭으로 가로 잡아줌 */
+}
+
