@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애니메이트</title>
+    <link href="css/20.css" rel="stylesheet" />
+    <script src="lib/jquery-3.7.0.min.js"></script>
+    <script>
+        // $ << jquery 표시
+        $(function(){
+            let openBtn = $('.open');
+            let closeBtn = $('.close');
+            let nav = $('nav');
+            let main = $('main');
+
+            //변수지정 클래스명 앞에 . 꼭 넣기!
+
+            //openBtn 클릭했을 때 실행
+            //nav > rigth 값을 0으로 (보여야하니까)
+            //main의 width값을 80% (옆에 메뉴 보여야하니까)
+            //animate() 메서드 사용(효과)
+            // ㄴ 시간조절, 부드러운 효과!
+
+            openBtn.click(function(){
+                nav.animate({
+                    //'속성':'속성값=실행값' 작성
+                    'right' : '0px'
+                }, 1000);//nav // ,시간설정 (기본셋팅은 400 = 0.4s)
+                main.animate({
+                    'width' : '80%'
+                });//main
+
+              
+            }); //openBtn.click()
+
+            //closeBtn을 클릭했을 때 실행
+            //nav > right값 -20% 해서 밖으로
+            //main의 width 값을 100%
+
+            closeBtn.click(function(){
+                nav.animate({
+                    'right' : '-20%'
+                }) //nav
+                main.animate({
+                    'width' : '100%'
+                },1000)
+            }); //closeBtn.click()
+
+            //cont01의 width값 조절하기
+            //list 안에 있는 div에 마우스 올렸을 때 실행
+            //선택한 div의 width값 50%
+            //=>animate()
+
+            $('.list div').mouseenter(function(){
+                $(this).stop().animate({ //this = 내가 선택한 div
+                    'width' : '50%'
+                },600);
+                //나를 제외한 형제선택자 => siblings()
+                $(this).siblings().stop().animate({
+                    'width' : '25%'
+                })//선택한 div를 제외한 나머지div는 25%로 설정
+            }); //mouseenter
+
+            //마우스 벗어났을 때 => mouseleave()
+            //모든 list div에게 width값 33.33%
+            $('.list div').mouseleave(function(){
+                $('.list div').stop().animate({
+                    'width' : '33.33%'
+                });
+            }); //mouseleave
+
+            //띠배너 스타일
+            let text = $('.text_event p')
+            let i = 0; //초기값
+            function textSlide(){
+                //함수작성
+                i++;
+                if(i>= text.length){
+                    i = 0;
+                }
+                text.removeClass('on');
+                text.eq(i).addClass('on');
+            }
+            textSlide(); //텍스트 슬라이드 실행
+            setInterval(textSlide, 400); //0.4초 반복
+
+
+
+
+
+
+
+        }) //jquey end << 이 안에서 모든 효과 작성해야 함!
+    </script>
+</head>
+<body>
+   
+
+    <div class="wrap">
+        <nav>
+            <div class="close">
+                <p>메뉴닫기</p>
+            </div> <!-- .close end -->
+            <ul class="gnb">
+                <li><a href="#">1일차</a></li>
+                <li><a href="#">2일차</a></li>
+                <li><a href="#">3일차</a></li>
+                <li><a href="#">밥집list</a></li>
+                <li><a href="#">카페list</a></li>
+                <li><a href="#">교통</a></li>
+                <li><a href="#">.etc</a></li>
+            </ul> <!-- .gnb end -->
+        </nav>
+        <main>
+            <header>
+                <div class="inner">
+                    <h1>
+                        <a href="#">trip to seoul :)</a>
+                    </h1>
+
+                   
+                    <div class="open">
+                       
+                        <p>메뉴보기</p>
+               
+
+                    </div> <!-- .open end -->
+                </div> <!-- .inner end -->
+            </header>
+            <section class="main_visual">
+                <img src="img/0517-1.jpg" alt="#" />
+            </section> <!-- .main_visual end -->
+
+            <!-- 중단 띠배너 -->
+            <div class="text_event">
+                <p class="on">6/16~18 금토일</p>
+                <P>GO SEOUL ! PLAY HARD !</P>
+            </div> <!-- .text_event end -->
+
+            <section class="cont01">
+                <h3>schedule</h3>
+                <div class="list">
+                    <div> <!-- 1 -->
+                       
+                        <p>6월 16일 : friday</br> </br>
+                        10:15 take a srt </br> 13:30 eat lunch </br> 14:20 take a city bus </br> 15~18:00 sight seeing </br>last sebongstay</br> </br> 
+                        <a href="https://www.seoulcitytourbus.co.kr/" target="_blank">▶ 노랑풍선🚍</a></br>
+                        <a href="https://main.seoulcitybus.com/service/tour_course_view.php?code=1" target="_blank">▶ 서울시티🚌</a>
+                       </p>
+                        <!-- target="_blank" << 새 링크로 열기 -->
+                        
+                    </div>
+                    <div> <!-- 2 -->
+                        
+                        <p>6월 17일 : saturday</br> </br>
+                        9~10:00 wake up </br> 15~16:00 meet anb </br> 17~18:00 eat dinner </br>20:00 watch a concert</br> </br> 
+                        <a href="https://www.airbnb.co.kr/rooms/654065086086467923?adults=4&location=%EC%9E%A0%EC%8B%A4%EB%8F%99%2C%20%EC%86%A1%ED%8C%8C%EA%B5%AC%2C%20%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%2C%20%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD&check_in=2023-06-17&check_out=2023-06-18&federated_search_id=df155659-8e70-43ac-a52b-e7fb58b0658d&source_impression_id=p3_1682658812_IElRfVafVFKylTPS" target="_blank">▶ anb</a>
+                        </p>
+
+                    </div>
+                    <div> <!-- 3 -->
+                        
+                        <p>6월 18일 : sunday</br></br>
+                        10:00 check out </br> 10~13:00 eat lunch </br>13:55 take a train</br>17:00 arrive busan</br></br>
+                        <a href="https://etk.srail.kr/hpg/hra/01/selectScheduleList.do?pageId=TK0101010000" target="_blank">▶ srt</a></p>
+                        
+                    </div>
+                </div> <!-- .list end -->
+            </section> <!-- .cont01 end -->
+        </main>
+    </div> <!-- .wrap end -->
+
+
+    <footer>
+        <p>COPYRIGHT ⓒ made by duswkrla</p>
+    </footer>
+</body>
+</html>
