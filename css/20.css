@@ -1,64 +1,195 @@
-@charset "utf-8";
- 
+@charset "utf-8" ;
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * { 
+ font-family: 'Noto Sans KR', sans-serif;
+}
+
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Noto Serif', serif; /* 구글폰트 css 복사 후 여기 붙여줌 */
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
 }
-
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
 body {
-    color: #333;
-    background-color: #5c5b2e6b;
+    color: #202020;
+    line-height: 1;
+    overflow-x: hidden;
 }
 
-.cont01 {
-    width: 1440px;
-    margin: 100px auto;
+.wrap nav {/* 스타일잡고, 영역 밖으로 */
+    position: fixed; /* 고정, 스크롤 안 먹힘 */
+    top: 100px;
+    right: -20%; /* 화면 밖으로, 나중에 스크립트 이용해서 위치 조정할 것. */
+    width: 20%;
+    height: 100%;
+    background-color: #fff;
+}
 
-    display: flex; /* figure와 div에게 width 값을 잡아주어야함! */
+.wrap nav .close {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    border-bottom: 1px solid #202020;
+}
+
+.wrap nav .gnb {
+    margin-top: 100px;
+}
+
+.wrap nav .gnb li {
+    padding: 20px 50px;
+    font-size: 20px;
+}
+
+/* 헤더 영역 잡기 */
+.wrap header {
+    width: 100%;
+    height: 100px;
+
+    background-color: #ffffff75;
+    color: #fff;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.wrap header .inner {
+    max-width: 1440px; /* 반응형 */
+    width: calc(100% - 40 px);
+    height: 100%; /* 부모영역만큼 */
+    margin: 0 auto; /* 가운데로 */
+
+    display: flex; /* 자식들 가로 정렬 */
     justify-content: space-between;
+    align-items: center; /* 수직 가운데 */
+    
+    z-index: 1;
 }
 
-.cont01 figure {
-    width: 480px; /* ★★★★★★★★ */
-    height: 600px;
-    border: 3px solid black;
+.wrap .main_visual {
+    width: 100%;
+    height: 80vh;
 }
 
-.cont01 figure img {
+.wrap .main_visual img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 적용하지 않으면 이미지가 한쪽으로 늘어남 */
+    object-fit: cover;
 }
 
-.cont01 div {
-    width: 940px;  /* ★★★★★★★★ */
-    border: 3px solid black;
+.wrap .cont01 {
+    margin: 150px 0;
+    text-align: center;
+}
 
-    display: flex;
-    flex-wrap: wrap; /* 밑으로 떨어지도록 만들어줌 */
-    align-content: space-between; /* 그 후 양끝 정렬 */
-    justify-content: center; /* div 영역 가운데 정렬 */
-    text-align: center; /* 텍스트가 가운데로 */
+.wrap .cont01 h3 {
+    font-size: 30px;
+    /* font-weight: normal; 폰트 얇게 */
+    margin-bottom: 30px;
+}
+
+.wrap .cont01 .list {
+    height: 80vh;
     
-    padding: 50px; /* 설정한 width값에 좌우 50씩 +100이 됨! */
-    box-sizing: border-box; /* width값 포함해서 안에 내부여백이 들어가도록 하는 거!
-    설정된 너비 안에 패딩,테두리 포함! */
-
-
- /*  위에 공식 또는 밑에 공식을 쓸 수 있음 
-    flex-direction: column;
-    justify-content: space-between;
+    background-attachment: fixed; /* 배경고정 */
+    display: flex; /* list div 가로 나열 */
     
-    이거 쓰면 text-align:center 가 먹힘*/
+
+    align-items: center; /* 부모인 list에게 center를 잡아야 가운데로 이동! */
 }
 
-.cont01 div p {
-    font-size: 24px;
+.wrap .cont01 .list div {
+    width: calc(100% / 3);
+    height: 100%;
+
+    padding: 0 50px;
+
+    
+    display: flex; /* 모두 가로 나열됨 */
+    flex-direction: column; /* 자식들 세로 정렬 */
+    justify-content: center; /* flex-direction 사용시 justify(원래 가로)와 align (원래 세로) 반대로 사용해야 함 */
 }
 
-.cont01 div h3 {
-    font-size: 50px;
-   /*  text-align: right; */
+.wrap .cont01 .list div:nth-child(1) {
+    background: url('../img/0517-2.jpg') center center / cover no-repeat;
+    /* 슬러쉬 / 필수! */
+    color: #fff;
 }
 
+
+.wrap .cont01 .list div:nth-child(2) {
+    background: url('../img/0517-3.jpg') center center / cover no-repeat;
+    /* 슬러쉬 / 필수! */
+
+    color: #fff;
+
+    border-left: 2px solid #fff;
+    border-right: 2px solid #fff;
+}
+
+.wrap .cont01 .list div:nth-child(3) {
+    background: url('../img/0517-4.jpg') center center / cover no-repeat;
+    /* 슬러쉬 / 필수! */
+
+    color: #fff;
+
+}
+
+.wrap .cont01 .list div p {
+   background-color: #2020207c;
+   height: 250px;
+   padding: 50px;
+}
+
+/* 띠배너 스타일 */
+.text_event {
+    height: 40px;
+    background-color: #202020;
+    color: #fff;
+    line-height: 40px;
+    text-align: center;
+}
+
+.text_event p {
+    display: none;
+}
+
+.text_event p.on {
+    display: block;
+}
+
+footer {
+    background-color: #202020;
+    color: whitesmoke;
+    padding: 10px;
+    text-align: center;
+}
+
+/* 반응형 */
+@media all and (max-width:414px) {
+    .wrap header {
+        width: 100%;
+        height: 50px;
+        font-size: 10px;
+    }
+
+    .wrap .main_visual {
+        width: 100%;
+        height: 50vh;
+    }
+
+    .wrap .main_visual img {
+        width: 100%;
+        height: 100%;
+    }
+    
+}
