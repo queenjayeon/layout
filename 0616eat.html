@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
     <head>
         <title>게시판</title>
     </head>
@@ -21,6 +22,14 @@
         </div>
         
         <script>
+            // 저장된 게시글을 불러옵니다.
+            window.addEventListener("load", function() {
+                var savedPosts = localStorage.getItem("posts");
+                if (savedPosts) {
+                    document.getElementById("post-list").innerHTML = savedPosts;
+                }
+            });
+    
             // 글 게시 버튼을 클릭했을 때의 동작
             document.getElementById("post-form").addEventListener("submit", function(event) {
                 event.preventDefault(); // 폼 제출의 기본 동작 방지
@@ -33,13 +42,32 @@
                 var post = document.createElement("div");
                 post.innerHTML = "<h2>" + title + "</h2><p>" + content + "</p>";
                 
+                // 삭제 버튼 생성
+                var deleteButton = document.createElement("button");
+                deleteButton.innerText = "삭제";
+                deleteButton.addEventListener("click", function() {
+                    post.remove();
+                    savePosts();
+                });
+                
+                post.appendChild(deleteButton);
+                
                 // 게시글 목록에 추가
                 document.getElementById("post-list").appendChild(post);
                 
                 // 입력 필드 초기화
                 document.getElementById("post-title").value = "";
                 document.getElementById("post-content").value = "";
+                
+                // 게시글 저장
+                savePosts();
             });
+            
+            // 게시글 저장 함수
+            function savePosts() {
+                var postList = document.getElementById("post-list").innerHTML;
+                localStorage.setItem("posts", postList);
+            }
         </script>
     </body>
     </html>
