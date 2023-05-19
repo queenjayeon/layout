@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0616-8</title>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <style>
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'GmarketSansMedium';
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        body {
+            line-height: 1;
+            color: #202020;
+        }
+
+        /* 모바일용이라 pc ver. 숨김처리 */
+        .xi-tags span {
+            /*span태그 브라우저 밖으로 날리기 */
+            position: absolute;
+            left: -99999px;
+        }
+
+        .xi-tags {
+            display: none;
+        }
+
+        /* 모바일용 메뉴 잡기 */
+
+        .wrap nav {
+            /* 스타일잡고, 영역 밖으로 */
+            position: fixed;
+            /* 고정, 스크롤 안 먹힘 */
+            top: 100px;
+            right: -30%;
+            /* 화면 밖으로, 나중에 스크립트 이용해서 위치 조정할 것. */
+            width: 30%;
+            height: 100%;
+            background-color: #fff;
+        }
+
+        .wrap nav .close {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            border: 2px solid #333;
+            background-color: #202020;
+            color: whitesmoke;
+            padding: 5px;
+        }
+
+        .wrap nav .gnb {
+            margin-top: 100px;
+        }
+
+        .wrap nav .gnb li {
+            padding: 20px 50px;
+            font-size: 20px;
+        }
+
+
+        header {
+            height: 100px;
+            background-color: #ffffff8c;
+
+            width: 100%;
+            /* fixed 후 쏠림현상 방지 */
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            backdrop-filter: blur(15px);
+            /* 헤더 뒤 img 블러처리 */
+
+        }
+
+        header .inner {
+            max-width: 1440px;
+            width: 95%;
+            height: 100%;
+            margin: 0 auto;
+
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            position: relative;
+        }
+
+        header .inner h1 {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        header .inner nav ul li {
+            display: inline-block;
+            /* 메뉴 가로 정렬 */
+            margin-left: 30px;
+        }
+
+        /* main_visual 영역 스타일잡기 */
+        .main_visual {
+            height: 80vh;
+            margin-bottom: 80px;
+        }
+
+        .main_visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 메인 밑에 잡기 */
+        .cont01 .list .item {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .cont01 .list .item figure {
+            width: 50%;
+            height: 100%;
+        }
+
+        .cont01 .list .item figure img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cont01 .list .item div {
+            width: 50%;
+            padding: 0 100px;
+        }
+
+        .cont01 .list .item:nth-child(2) div {
+            order: -1;
+            /* 직계부모에게 (=item) display:flex가 있을때만 사용가능
+    자식의 앞뒤 순서 변경해주는 역할 (그림,글 위치 바뀜) */
+        }
+
+        .cont01 .list .item div h4 {
+            font-size: 45px;
+            line-height: 1.3;
+        }
+
+        .cont01 .list .item div p {
+            font-size: 22px;
+            margin: 10px 0 50px;
+        }
+
+        .cont01 .list .item div a {
+            border: 1px solid #333;
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* 1024px 이하 */
+        @media all and (max-width:1024px) {
+            header .inner nav {
+                display: none;
+                /* 메뉴들을 안보이게~ */
+            }
+
+            .xi-tags {
+                display: block;
+                /* 보이게! */
+                font-size: 45px;
+            }
+
+            .cont01 .list .item div {
+                padding: 0 50px;
+            }
+
+            .cont01 .list .item div h4 {
+                font-size: 35px;
+            }
+
+            .cont01 .list .item div p {
+                font-size: 19px;
+            }
+        }
+
+        /* 1024 */
+
+        /* 800px 이하 */
+        @media all and (max-width:414px) {
+            header {
+                height: 50px;
+            }
+
+            header .inner h1 {
+                font-size: 20px;
+            }
+
+            .xi-tags {
+                font-size: 30px;
+            }
+
+            .main_visual {
+                height: 60vh;
+                margin-bottom: 25px;
+            }
+
+            .main_visual img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .cont01 .list .item {
+                height: auto;
+                /* 60vh로 잡혀져있는 높이값 해제 */
+                display: block;
+                /* 세로 정렬 */
+            }
+
+            .cont01 .list .item figure {
+                width: calc(100% - 40px);
+                height: 40vh;
+                margin: 0 auto;
+            }
+
+            .cont01 .list .item figure img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .cont01 .list .item div {
+                width: 100%;
+                margin: 20px 0;
+            }
+
+            .cont01 .list .item div h4 {
+                font-size: 20px;
+            }
+
+            .cont01 .list .item div p {
+                font-size: 15px;
+                line-height: 20px;
+            }
+
+            .cont01 .list .item div a {
+                display: block;
+                /* 블럭해주는 이유 : 블럭을 해야 스타일이 잡힘 */
+                width: 150px;
+                text-align: center;
+                /* a태그 안에서 글 가운데 정렬 */
+                margin: 0 auto;
+                /* 화면의 가운데로 이동 */
+                background-color: #202020;
+                color: whitesmoke;
+
+                margin-top: 10px;
+            }
+
+            /* 2차메뉴 스타일잡기 */
+            .wrap nav {
+            top: 50px;
+            width: 30%;
+            height: 100%;
+            background-color: #fff;
+            font-size: 13px;
+        }
+
+        .wrap nav .close {
+            padding: 0 auto;
+            border: 1px solid #202020
+            font-size: 15px;
+        }
+
+        .wrap nav .gnb {
+            margin-top: 50px;
+        }
+
+        .wrap nav .gnb li {
+            padding: 10px 10px;
+            font-size: 20px;
+            font-size: 13px;
+        }
+
+
+
+
+
+
+
+
+
+
+        }
+
+        /* 800 */
+
+        /* 푸터영역 스타일 잡기 */
+        footer {
+            background-color: #202020;
+            color: whitesmoke;
+            padding: 10px;
+            text-align: center;
+            font-size: 13px;
+            margin-top: 20px;
+        }
+
+        /* 띠배너 스타일 */
+        .text_event {
+            height: 40px;
+            background-color: #2020207c;
+            color: #fff;
+            line-height: 40px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .text_event p {
+            display: none;
+        }
+
+        .text_event p.on {
+            display: block;
+        }
+    </style>
+
+    <script src="lib/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+
+            //띠배너 스타일
+            let text = $('.text_event p')
+            let i = 0; //초기값
+            function textSlide() {
+                //함수작성
+                i++;
+                if (i >= text.length) {
+                    i = 0;
+                }
+                text.removeClass('on');
+                text.eq(i).addClass('on');
+            }
+            textSlide(); //텍스트 슬라이드 실행
+            setInterval(textSlide, 400); //0.4초 반복
+            //띠배너 끝
+
+            let openBtn = $('.xi-tags');
+            let closeBtn = $('.close');
+            let nav = $('nav');
+            let main = $('main');
+
+            //변수지정 클래스명 앞에 . 꼭 넣기!
+            //openBtn 클릭했을 때 실행
+            //nav > rigth 값을 0으로 (보여야하니까)
+            //main의 width값을 80% (옆에 메뉴 보여야하니까)
+            //animate() 메서드 사용(효과)
+            // ㄴ 시간조절, 부드러운 효과!
+
+            openBtn.click(function(){
+                nav.animate({
+                    //'속성':'속성값=실행값' 작성
+                    'right' : '0px'
+                }, 1000);//nav // ,시간설정 (기본셋팅은 400 = 0.4s)
+                main.animate({
+                    'width' : '80%'
+                });//main
+
+              
+            }); //openBtn.click()
+
+            //closeBtn을 클릭했을 때 실행
+            //nav > right값 -20% 해서 밖으로
+            //main의 width 값을 100%
+
+            closeBtn.click(function(){
+                nav.animate({
+                    'right' : '-30%'
+                }) //nav
+                main.animate({
+                    'width' : '100%'
+                },1000)
+            }); //closeBtn.click()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }) //jquery end << 이 안에서 모든 효과 작성해야 함!
+    </script>
+
+</head>
+
+<body>
+    <!-- 2차 메뉴 진입 만들거임 -->
+    <div class="wrap">
+        <nav>
+            <div class="close">
+                <p>메뉴닫기</p>
+            </div> <!-- .close end -->
+            <ul class="gnb">
+                <li><a href="https://www.youtube.com/watch?v=aa8i8UknyzU" target="_blank">bruno mars♥</a></li>
+                <li><a href="https:naver.com" target="_blank">cafe & dessert</a></li>
+            </ul> <!-- .gnb end -->
+        </nav>
+        <!-- 2차 메뉴 진입 만들거임 -->
+
+
+
+        <header>
+            <div class="inner">
+                <h1>trip to seoul :)</h1>
+                <nav>
+                    <ul>
+                        <li><a href="#">1일차</a></li>
+                        <li><a href="#">2일차</a></li>
+                        <li><a href="#">3일차</a></li>
+                        <li><a href="#">bruno mars♥</a></li>
+                        <li><a href="#">cafe & dessert</a></li>
+                    </ul>
+                </nav> <!-- 위에 스타일시트 가져옴! -->
+                <i class="xi-tags"><span>메뉴보기</span></i>
+            </div><!-- .inner end -->
+        </header>
+        <section class="main_visual">
+            <img src="img/0517-1.jpg" alt="#" />
+        </section><!-- .main_visual end -->
+
+        <!-- 중단 띠배너 -->
+        <div class="text_event">
+            <p class="on">6/16~18 금토일</p>
+            <P>GO SEOUL ! PLAY HARD !</P>
+        </div> <!-- .text_event end -->
+
+
+
+        <section class="cont01">
+            <div class="list">
+                <div class="item">
+                    <figure>
+                        <img src="img/0517-2.jpg" alt="#" />
+                    </figure>
+                    <div>
+                        <h4> #6/16 fri.</h4>
+                        <p>10:15 take a srt </br> 13:30 eat lunch </br> 14:20 take a city bus </br> 15~18:00 sight
+                            seeing
+                            </br>last sebongstay</p>
+                        <a href="https://www.seoulcitytourbus.co.kr/" target="_blank">▶ 노랑풍선🚍</a></br>
+                        <a href="https://main.seoulcitybus.com/service/tour_course_view.php?code=1" target="_blank">▶
+                            서울시티🚌</a>
+                    </div>
+                </div><!-- .item end -->
+                <div class="item">
+                    <figure>
+                        <img src="img/0517-3.jpg" alt="#" />
+                    </figure>
+                    <div>
+                        <h4> #6/17 sat.</h4>
+                        <p>9~10:00 wake up </br> 15~16:00 meet anb </br> 17~18:00 eat dinner </br>20:00 watch a concert
+                        </p>
+                        <a href="https://www.airbnb.co.kr/rooms/654065086086467923?adults=4&location=%EC%9E%A0%EC%8B%A4%EB%8F%99%2C%20%EC%86%A1%ED%8C%8C%EA%B5%AC%2C%20%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%2C%20%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD&check_in=2023-06-17&check_out=2023-06-18&federated_search_id=df155659-8e70-43ac-a52b-e7fb58b0658d&source_impression_id=p3_1682658812_IElRfVafVFKylTPS"
+                            target="_blank">▶ anb</a>
+                    </div>
+                </div><!-- .item end -->
+                <div class="item">
+                    <figure>
+                        <img src="img/0517-4.jpg" alt="#" />
+                    </figure>
+                    <div>
+                        <h4> #6/18 sun.</h4>
+                        <p>10:00 check out </br> 10~13:00 eat lunch </br>13:55 take a train</br>17:00 arrive busan</p>
+                        <a href="https://etk.srail.kr/hpg/hra/01/selectScheduleList.do?pageId=TK0101010000"
+                            target="_blank">▶ srt</a>
+                    </div>
+                </div><!-- .item end -->
+
+            </div><!-- .list end -->
+        </section><!-- .cont01 end -->
+
+        <footer>
+            <p>COPYRIGHT ⓒ made by duswkrla</p>
+        </footer>
+
+
+</body>
+
+</html>
